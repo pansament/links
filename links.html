@@ -232,26 +232,23 @@
     }(document,'script','weatherwidget-io-js');
   </script>
   
-<!-- Put this somewhere above the grid -->
-<a id="gh-edit-link" href="#" target="_blank" rel="noopener" style="padding:6px 10px; display:inline-block;">
-  Edit links on GitHub
-</a>
 
-<script>
-  // Build a link to the GitHub web editor: https://github.com/{owner}/{repo}/edit/main/links.json
-  (function () {
-    // Change these to your actual owner/repo if you know them; or try to infer from URL path.
-    // Example: https://ioanbucur.github.io/address-book/  -> owner=ioanbucur, repo=address-book
-    const owner = 'pansament';
-    const repo  = 'links';
-    const editUrl = `https://github.com/${owner}/${repo}/edit/main/links.json`;
-    document.getElementById('gh-edit-link').href = editUrl;
-  })();
-</script>
+<!-- Edit on GitHub button (hard-coded) -->
+<div style="width:90%; margin: 12px auto;">
+  <a class="edit-links-btn"
+     href="https://github.com/YOUR_GH_USERNAME/YOUR_REPO_NAME/edit/main/links.json"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="padding:8px 12px; border:2px solid currentColor; border-radius:6px; text-decoration:none; font-weight:600;">
+    ✏️ Edit links on GitHub
+  </a>
+</div>
+
 
   
 
 </body>
 
 </html>
+
 
