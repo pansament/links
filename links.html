@@ -232,63 +232,25 @@
     }(document,'script','weatherwidget-io-js');
   </script>
   
-
-<div style="width:90%; margin: 0 auto 12px; display:flex; gap:8px; align-items:center;">
-  <button id="edit-server-btn" style="padding:6px 10px;">Edit links (shared)</button>
-  <span id="save-status" role="status" aria-live="polite"></span>
-</div>
-
-<div id="server-editor" style="display:none; width:90%; margin:0 auto;">
-  <textarea id="server-json-editor" style="width:100%; height:280px; font-family:ui-monospace,Consolas,monospace;"></textarea>
-  <div style="margin-top:8px; display:flex; gap:8px;">
-    <button id="save-server-btn" style="padding:6px 12px;">Save to server</button>
-    <button id="cancel-server-btn" style="padding:6px 12px;">Cancel</button>
-  </div>
-</div>
+<!-- Put this somewhere above the grid -->
+<a id="gh-edit-link" href="#" target="_blank" rel="noopener" style="padding:6px 10px; display:inline-block;">
+  Edit links on GitHub
+</a>
 
 <script>
-  const API_BASE = '/api';
+  // Build a link to the GitHub web editor: https://github.com/{owner}/{repo}/edit/main/links.json
+  (function () {
+    // Change these to your actual owner/repo if you know them; or try to infer from URL path.
+    // Example: https://ioanbucur.github.io/address-book/  -> owner=ioanbucur, repo=address-book
+    const owner = 'YOUR_GH_USERNAME';
+    const repo  = 'YOUR_REPO_NAME';
+    const editUrl = `https://github.com/${owner}/${repo}/edit/main/links.json`;
+    document.getElementById('gh-edit-link').href = editUrl;
+  })();
+</script>
 
-  document.getElementById('edit-server-btn').addEventListener('click', async () => {
-    const panel = document.getElementById('server-editor');
-    const ta = document.getElementById('server-json-editor');
-    const status = document.getElementById('save-status');
-    try {
-      status.textContent = 'Loading...';
-      const res = await fetch(`${API_BASE}/links`);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      ta.value = JSON.stringify(await res.json(), null, 2);
-      panel.style.display = 'block';
-      status.textContent = '';
-    } catch (e) {
-      status.textContent = 'Failed to load: ' + e.message;
-    }
-  });
-
-  document.getElementById('save-server-btn').addEventListener('click', async () => {
-    const ta = document.getElementById('server-json-editor');
-    const status = document.getElementById('save-status');
-    try {
-      const payload = JSON.parse(ta.value); // validate JSON
-      const res = await fetch(`${API_BASE}/links`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      status.textContent = 'Saved.';
-      // Optional: re-render grid
-      setTimeout(() => location.reload(), 300);
-    } catch (e) {
-      status.textContent = 'Save failed: ' + e.message;
-    }
-  });
-
-  document.getElementById('cancel-server-btn').addEventListener('click', () => {
-    document.getElementById('server-editor').style.display = 'none';
-  });
-</script>  
   
 
 </body>
+
 </html>
