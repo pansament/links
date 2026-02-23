@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="Shortcut icon" href="http://ots.app.pmi//wdab_images/primat.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPA Bay 3</title>\
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0px;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 40px);
+    }
+
+    .iframe-container {
+        width: 100%;
+        aspect-ratio: 2 / 1; /* Ensure iframe maintains a square aspect ratio */
+        border: 1px solid #ccc;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .button-bar {
+        background-color: #f1f1f1;
+        padding: 1px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1;
+    }
+
+    button {
+        margin: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="button-bar">
+    <button onclick="refreshIframe(1)">Refresh 09</button>
+    <button onclick="refreshIframe(2)">Refresh 10</button>
+    <button onclick="refreshIframe(3)">Refresh 11</button>
+    <button onclick="refreshIframe(4)">Refresh 12</button>
+    <button onclick="refreshAll()">Refresh All</button>
+
+</div>
+
+<div class="container">
+    <div class="iframe-container">
+        <iframe id="iframe1" src="http://ots.app.pmi/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L309"></iframe>
+    </div>
+    <div class="iframe-container">
+        <iframe id="iframe2" src="http://ots.app.pmi/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L310"></iframe>
+    </div>
+    <div class="iframe-container">
+        <iframe id="iframe3" src="http://ots.app.pmi/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L311"></iframe>
+    </div>
+    <div class="iframe-container">
+        <iframe id="iframe4" src="http://ots.app.pmi/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L312"></iframe>
+    </div>
+</div>
+
+<script>
+function refreshIframe(iframeNum) {
+    var iframe = document.getElementById('iframe' + iframeNum);
+    iframe.src = iframe.src;
+}
+
+function refreshAll() {
+    var iframes = document.getElementsByTagName('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+        iframes[i].src = iframes[i].src;
+    }
+}
+</script>
+
+<script>
+    const iframes = document.querySelectorAll('iframe');
+
+    iframes.forEach(iframe => {
+        iframe.addEventListener('load', () => {
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+        });
+    });
+</script>
+
+
+</body>
+</html>

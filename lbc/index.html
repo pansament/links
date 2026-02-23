@@ -1,0 +1,430 @@
+﻿
+
+<head>
+<meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi"><link rel="Shortcut icon" href="../img/lbc.png">
+<p style=" position: absolute; top: 0; left: 0; width: 100%; text-align: center;">
+    <style>
+		/* Light Mode Button
+		--------------------------- */ 
+
+		.light-mode-button {
+			background:0;
+		    border: 0;
+		    box-sizing: border-box;
+		    cursor: pointer;
+		    width: 30px;
+		    height: 16px;
+		    position: relative;
+		    border: 1px solid rgba(255,255,255,0);
+
+		    /* Fixed position for this demo */
+		    position: fixed;
+		    top:15px;
+		    right:50%;
+		}
+
+		.light-mode-button:focus {
+			outline:none; /* Not ideal for accessibility */
+		}
+
+		.light-mode-button span:nth-child(1) {
+			position: absolute;
+			top:0;
+		    left:0;
+		    width: 30px;
+		    height:16px;
+		    background-color: #d6d7db;
+		    border-radius: 9px;
+		    box-shadow: inset 1px 1px 3px 0 rgb(0 0 0 / 40%);
+		    transition: 1s;
+		}
+
+		.light-mode-button span:nth-child(2) {
+			position: absolute;
+			top:3px;
+		    left:3px;
+		    width: 10px;
+		    height: 10px;
+		    background-color: #fff;
+		    border-radius: 50%;
+		    box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 40%);
+		    transition: 1s;
+		}
+
+
+		/* Light & Dark Mode Styles
+		--------------------------- */ 
+
+		body {
+			background-color: #f6f6f6;
+            transition: background-color .3s;
+        }
+
+		body[light-mode=dark] {
+            background-color: #141516;
+            color: #ced4e2;
+        }
+
+        body[light-mode="dark"] .light-mode-button span:nth-child(1){
+            background-color: #ced4e2;
+            color: #141516;
+        }
+
+        body[light-mode=dark] .light-mode-button span:nth-child(2) {
+		    left: 17px;
+		    background-color: #141516;
+		}
+
+    </style>
+	</head>
+
+  <body>
+    <script>
+        var app = document.getElementsByTagName("BODY")[0];
+        if (localStorage.lightMode == "dark") {
+            app.setAttribute("light-mode", "dark");
+        }
+    </script>
+
+
+	<button 
+		class="light-mode-button" aria-label="Toggle Light Mode" onclick="toggle_light_mode()">
+    	<span></span>
+    	<span></span>
+    </button> 
+
+
+    <script>
+		
+        function toggle_light_mode() {
+            var app = document.getElementsByTagName("BODY")[0];
+            if (localStorage.lightMode == "dark") {
+                localStorage.lightMode = "light";
+                app.setAttribute("light-mode", "light");
+            } else {
+                localStorage.lightMode = "dark";
+                app.setAttribute("light-mode", "dark");
+            }       
+        }
+
+		window.addEventListener("storage", function () {
+			if (localStorage.lightMode == "dark") {
+				app.setAttribute("light-mode", "dark");
+			} else {
+				app.setAttribute("light-mode", "light");
+			}
+		}, false);
+		
+    </script>
+	</p>
+  </body>
+</html>
+
+<p>
+<br>
+</p>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="jquery.min.js"></script>
+    <script type ="text/javascript" src="bwip-js-min.js">
+        </script>
+
+        <script>
+            var bEnterOrTabAfterPassword = false;
+
+            function enterAfterPassword() {
+                var ck = document.getElementById("enterafterpassword");
+                bEnterOrTabAfterPassword = ck.checked;
+                getBarcode();
+
+            }
+
+            function getBarcode() {
+                //sourceURL = "http://api-bwipjs.rhcloud.com/?" + document.loginbarcode.symbology.value;
+                //sourceURL = "http://bwipjs-api.metafloor.com/?" + document.loginbarcode.symbology.value;
+
+                //sourceURL += "&parse" + "&rotate=" + document.loginbarcode.rotation.value + "&text=";
+
+                var creds = document.loginbarcode.username.value + document.loginbarcode.enterTab.value + document.loginbarcode.password.value;
+                creds += document.loginbarcode.enterTab2.value;
+                //sourceURL += encodeURIComponent(creds);
+               // if (document.loginbarcode.caption.value.length > 0) {
+               //     sourceURL += "&alttext=" + encodeURIComponent(document.loginbarcode.caption.value); //display credentials in image
+               // }
+                //sourceURL += document.loginbarcode.scale.value;
+
+
+                options = {
+                    parse: true, //interpret ^009 as Ctrl+9= tab character
+                    bcid: document.loginbarcode.symbology.value,       // Barcode type
+                    text: creds,    // Text to encode
+                    scale: document.loginbarcode.scale.value,               // 3x scaling factor
+                    height: document.loginbarcode.height.value,
+                    includetext: document.loginbarcode.caption.value != '',  // Show human-readable text
+                    textxalign: 'center',        // Always good to set this
+                    rotate: document.loginbarcode.rotation.value,
+                    alttext: document.loginbarcode.caption.value,
+                };
+                let canvas = document.createElement('canvas');
+                try {
+                    bwipjs.toCanvas(canvas, options);
+                    document.loginbarcode.barcodeImage.src = canvas.toDataURL('image/png');
+                } catch (e) {
+                    // `e` may be a string or Error object
+                    alert(e);
+                }
+
+                //alert(sourceURL);
+                //document.loginbarcode.barcodeImage.src = sourceURL;
+
+
+
+            }
+
+            function showNote() {
+
+                $("#statusInfo").html("<font color='red'> Note: Right-Click Copy Image doesn\'t work.  Use Save As...");
+
+
+            }
+
+            function hideNote() {
+
+                $("#statusInfo").html("Note: Captions might not be valid for all barcode types.");
+            }
+
+
+            function showPassword(boolVal) {
+                hideNote();
+                if (!boolVal) {
+                    document.loginbarcode.password.type = "password";
+                    document.loginbarcode.showpassword.checked = false;
+                    return;
+                }
+                var ck = document.loginbarcode.showpassword.checked;
+                if (ck == true) {
+                    document.loginbarcode.password.type = "text";
+                } else {
+                    document.loginbarcode.password.type = "password";
+                    document.loginbarcode.showpassword.checked = false;
+                }
+            }
+
+        </script>
+
+        <style>
+            form {
+                border: none;
+                text-align: center;
+                display: center;
+                padding-top: auto;
+                padding-right: auto;
+                padding-bottom: auto;
+                padding-left: auto;
+                background-size: inherit;
+                font-size: x-large;
+            }
+
+            #text {
+                font-size: large;
+            }
+        </style>
+        <title> Login Barcode Creator</title>
+        <meta name="description" content="Use the form to create a login barcode that you can use to login to your handheld scanner device rather than manually keying in your username and password credentials each time you have to login.">
+        <meta name="keywords" content="Login Barcode Creator, login, barcode,handheld,scanner">
+        <meta name="robots" content="index,follow" />
+</head>
+<body onload="showPassword(false)">
+
+
+
+    <br />
+    <form name="loginbarcode">
+        <img src="logo.gif" /><br />
+        <br />
+
+        username:  <input type="text" name="username" value="" onfocus="$(this).css('background-color','#eeeeee')" onblur="$(this).css('background-color','white')" />
+        <select name="enterTab" title="Select whether you press enter, tab, etc. after entering username.">
+            <option value="^013">Enter</option>
+            <option value="^009">Tab</option>
+            <option value="^011">Vertical Tab</option>
+            <option value="^010">Line Feed</option>
+            <option value="^012">Form Feed</option>
+        </select>
+
+        <br />
+        <br />
+        password:  <input type="password" name="password" value="" onfocus="$(this).css('background-color','#eeeeee')" onblur="$(this).css('background-color','white')" />
+        <select name="enterTab2" title="Select whether you press enter, tab, etc. after entering password.">
+            <option value="">None</option>
+            <option value="^013">Enter</option>
+            <option value="^009">Tab</option>
+            <option value="^011">Vertical Tab</option>
+            <option value="^010">Line Feed</option>
+            <option value="^012">Form Feed</option>
+        </select><br/>
+        <br/>
+        Show password<input type="checkbox" name="showpassword" onchange="showPassword(true)" />
+        <br />
+        <br/>
+        Caption: (optional) <input onChange="getBarcode()" title="Caption will appear below 1d barcodes." type="text" name="caption" value="" onfocus="$(this).css('background-color','#eeeeee')" onblur="$(this).css('background-color','white')" />
+        <br/>
+        <br/>
+        Barcode scaling: <select name="scale" onchange="getBarcode()" title="Select scaling 1 = default.">
+            <option selected value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br />
+        <br/>
+        Barcode height (in millimeters): <input name="height" type="text" value="20" onchange="getBarcode()" title="(optional) enter height of barcode in millimeters."/>
+        <br />
+        <br />
+        Barcode symbology:
+        <select name="symbology" onchange="getBarcode()" title="Probably best to just use Code 128, but other options are here in case that one does not work for you.  Most EXTENDED OPTIONS will probably generate an error code because the format isn't right, but I added them here just because I could.">
+            <!--  -->
+            <option value="datamatrix">DataMatrix</option>
+            <option value="qrcode">QR Code (2d)</option>
+            <option value="datamatrixrectangular">datamatrixrectangular</option>
+            <option value="datamatrixrectangularextension">datamatrixrectangularextension</option>
+            <option value="dotcode">dotcode</option>
+			<option value="code128">Code 128 (1d)</option>
+            <option value="code16k">Code 16K (2d)</option>
+            <option value="code93ext">Code 93 Extended (1d)</option>
+            <option value="pdf417">PDF417 (2d)</option>
+            <option value="micropdf417">MicroPDF417 (2d)</option>	
+      <!--  <option value="code128">--BEGIN EXTENDED OPTIONS--</option>  -->
+      <!--  <option value="auspost">auspost</option>  -->
+            <option value="azteccode">azteccode</option>
+            <option value="azteccodecompact">azteccodecompact</option>
+            <option value="aztecrune">aztecrune</option>
+      <!--  <option value="bc412">bc412</option>  -->
+      <!--  <option value="channelcode">channelcode</option>  -->
+            <option value="codablockf">codablockf</option>
+      <!--  <option value="code11">code11</option>  -->
+      <!--  <option value="code2of5">code2of5</option>  -->
+      <!--  <option value="code32">code32</option>  -->
+      <!--  <option value="code39">code39</option>  -->
+            <option value="code39ext">code39ext</option>
+            <option value="code49">code49</option>
+      <!--  <option value="code93">code93</option>  -->
+            <option value="code93ext">code93ext</option>
+            <option value="codeone">codeone</option>
+      <!--  <option value="coop2of5">coop2of5</option>  -->
+      <!--  <option value="daft">daft</option>  -->
+      <!--  <option value="databarexpanded">databarexpanded</option>  -->
+      <!--  <option value="databarexpandedcomposite">databarexpandedcomposite</option>  -->
+      <!--  <option value="databarexpandedstacked">databarexpandedstacked</option>  -->
+      <!--  <option value="databarexpandedstackedcomposite">databarexpandedstackedcomposite</option>  -->
+      <!--  <option value="databarlimited">databarlimited</option>  -->
+      <!--  <option value="databarlimitedcomposite">databarlimitedcomposite</option>  -->
+      <!--  <option value="databaromni">databaromni</option>  -->
+      <!--  <option value="databaromnicomposite">databaromnicomposite</option>  -->
+      <!--  <option value="databarstacked">databarstacked</option>  -->
+      <!--  <option value="databarstackedcomposite">databarstackedcomposite</option>  -->
+      <!--  <option value="databarstackedomni">databarstackedomni</option>  -->
+      <!--  <option value="databarstackedomnicomposite">databarstackedomnicomposite</option>  -->
+      <!--  <option value="databartruncated">databartruncated</option>  -->
+      <!--  <option value="databartruncatedcomposite">databartruncatedcomposite</option>  -->
+      <!--  <option value="datalogic2of5">datalogic2of5</option>  -->
+      <!--  <option value="ean13">ean13</option>  -->
+      <!--  <option value="ean13composite">ean13composite</option>  -->
+      <!--  <option value="ean14">ean14</option>  -->
+      <!--  <option value="ean2">ean2</option>  -->
+      <!--  <option value="ean5">ean5</option>  -->
+      <!--  <option value="ean8">ean8</option>  -->
+      <!--  <option value="ean8composite">ean8composite</option>  -->
+      <!--  <option value="flattermarken">flattermarken</option>  -->
+      <!--  <option value="gs1_128">gs1_128</option>  -->
+      <!--  <option value="gs1_128composite">gs1_128composite</option>  -->
+      <!--  <option value="gs1_cc">gs1_cc</option>  -->
+      <!--  <option value="gs1datamatrix">gs1datamatrix</option>  -->
+      <!--  <option value="gs1datamatrixrectangular">gs1datamatrixrectangular</option>  -->
+      <!--  <option value="gs1dotcode">gs1dotcode</option>  -->
+      <!--  <option value="gs1northamericancoupon">gs1northamericancoupon</option>  -->
+      <!--  <option value="gs1qrcode">gs1qrcode</option>  -->
+            <option value="hanxin">hanxin</option>
+      <!--  <option value="hibcazteccode">hibcazteccode</option>  -->
+      <!--  <option value="hibccodablockf">hibccodablockf</option>  -->
+      <!--  <option value="hibccode128">hibccode128</option>
+      <!--  <option value="hibccode39">hibccode39</option>
+      <!--  <option value="hibcdatamatrix">hibcdatamatrix</option>
+      <!--  <option value="hibcdatamatrixrectangular">hibcdatamatrixrectangular</option>
+      <!--  <option value="hibcmicropdf417">hibcmicropdf417</option>
+      <!--  <option value="hibcpdf417">hibcpdf417</option>
+      <!--  <option value="hibcqrcode">hibcqrcode</option>
+      <!--  <option value="iata2of5">iata2of5</option>
+      <!--  <option value="identcode">identcode</option>
+      <!--  <option value="industrial2of5">industrial2of5</option>
+      <!--  <option value="interleaved2of5">interleaved2of5</option>
+      <!--  <option value="isbn">isbn</option>
+      <!--  <option value="ismn">ismn</option>
+      <!--  <option value="issn">issn</option>
+      <!--  <option value="itf14">itf14</option>  -->
+            <option value="jabcode">jabcode</option>
+      <!--  <option value="japanpost">japanpost</option>  -->
+      <!--  <option value="kix">kix</option>
+      <!--  <option value="leitcode">leitcode</option>
+      <!--  <option value="mailmark">mailmark</option>
+      <!--  <option value="matrix2of5">matrix2of5</option>  -->
+            <option value="maxicode">maxicode</option>
+            <option value="micropdf417">micropdf417</option>
+      <!--  <option value="microqrcode">microqrcode</option>
+      <!--  <option value="msi">msi</option>
+      <!--  <option value="onecode">onecode</option>  -->
+            <option value="pdf417">pdf417</option>
+            <option value="pdf417compact">pdf417compact</option>
+      <!--  <option value="pharmacode">pharmacode</option>
+      <!--  <option value="pharmacode2">pharmacode2</option>
+      <!--  <option value="planet">planet</option>
+      <!--  <option value="plessey">plessey</option>  -->
+            <option value="posicode">posicode</option>
+      <!--  <option value="postnet">postnet</option>
+      <!--  <option value="pzn">pzn</option>
+      <!--  <option value="rationalizedCodabar">rationalizedCodabar</option>
+      <!--  <option value="raw">raw</option>
+      <!--  <option value="rectangularmicroqrcode">rectangularmicroqrcode</option>
+      <!--  <option value="royalmail">royalmail</option>
+      <!--  <option value="sscc18">sscc18</option>  -->
+            <option value="swissqrcode">swissqrcode</option>
+      <!--  <option value="symbol">symbol</option>  -->
+            <option value="telepen">telepen</option>
+            <option value="telepennumeric">telepennumeric</option>
+            <option value="ultracode">ultracode</option>
+      <!--  <option value="upca">upca</option>
+      <!--  <option value="upcacomposite">upcacomposite</option>
+      <!--  <option value="upce">upce</option>
+      <!--  <option value="upcecomposite">upcecomposite</option>  -->
+        </select><br />
+        <br/>
+        Barcode rotation:
+        <select name="rotation" title="Select Rotation" onchange="getBarcode()">
+            <option value="N">Normal rotation</option>
+            <option value="R">90 degrees clockwise</option>
+            <option value="L">90 degrees counter-clockwise</option>
+            <option value="I">180 degrees inverted</option>
+        </select>
+        <br/>
+        <br/>
+        <input name="getButton" type="button" value="Create Login Barcode" onclick="getBarcode()" />
+        <input type="reset" />
+
+
+
+
+        <br />
+        <br />
+        <img id="barcodeImage" name="barcodeImage" onmouseover="showNote()" onmouseout="hideNote()" src="data:image/jpg;base64,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" />
+        <br />
+        <br />
+        <p id="statusInfo"></p>
+
+
+	</p>
+    </form>
+</body>
+
+<form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>

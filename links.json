@@ -1,0 +1,150 @@
+{
+  "items": [
+    {
+      "title": "iMEL",
+      "url": "http://imel-pmro-prd.pmiapps.biz/apriso/apriso/",
+      "image": "img/imel.jpg",
+      "alt": "iMEL"
+    },
+    {
+      "title": "SPA RO70",
+      "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_Line_Overview&eoa=x#RO70",
+      "image": "img/spa.jpg",
+      "alt": "Secondary Performance Analysis RO70"
+    },
+    {
+      "title": "SPA Bay 3 - Voyager 09",
+      "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L309",
+      "image": "img/spa.jpg",
+      "alt": "SPA Voyager 09"
+    },
+    {
+      "title": "SPA Bay 3 - Voyager 10",
+      "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L310",
+      "image": "img/spa.jpg",
+      "alt": "SPA Voyager 10"
+    },
+    {
+      "title": "SPA Bay 3 - Voyager 11",
+      "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L311",
+      "image": "img/spa.jpg",
+      "alt": "SPA Voyager 11"
+    },
+    {
+      "title": "SPA Bay 3 - Voyager 12",
+      "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=RO10-RS-P1-L312",
+      "image": "img/spa.jpg",
+      "alt": "SPA Voyager 12"
+    },
+    {
+      "title": "DH Logbook Voyager",
+      "url": "https://pmicloud.sharepoint.com/teams/DHLogVoyager-Bay3-PMR/Lists/DH%20Log/",
+      "image": "img/dh.jpg",
+      "alt": "DH Logbook Voyager"
+    },
+    {
+      "title": "Inextor Vault",
+      "url": "https://pmi.inextor.biz/",
+      "image": "img/inextor.jpg",
+      "alt": "Inextor Vault"
+    },
+
+    {
+      "title": "AWACS Speed Mgmt",
+      "url": "https://awacs-portal2.icloud-prd.eu-west-1.aws.pmicloud.biz/portal/?a=speed-management",
+      "image": "img/awacs.png",
+      "alt": "AWACS"
+    },
+    {
+      "title": "Grafana LU 29",
+      "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3226ffsfl/smc-line-overview-lu09?orgId=3&refresh=5s",
+      "image": "img/grafana_icon.png",
+      "alt": "Grafana LU 29"
+    },
+    {
+      "title": "Grafana LU 30",
+      "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3235fftfl/smc-line-overview-lu10?orgId=3&refresh=5s",
+      "image": "img/grafana_icon.png",
+      "alt": "Grafana LU 30"
+    },
+    {
+      "title": "SIGA – Access Request",
+      "url": "https://pmi.saviyntcloud.com/ECM/workflowmanagement/requesthome?menu=1",
+      "image": "img/siga.png",
+      "alt": "SIGA"
+    },
+    {
+      "title": "IMDL",
+      "url": "https://imdl-pmicloud.msappproxy.net/#/",
+      "image": "img/imdllat.png",
+      "alt": "IMDL"
+    },
+    {
+      "title": "Outlook",
+      "url": "https://outlook.office.com/",
+      "image": "img/mail.png",
+      "alt": "Outlook"
+    },
+    {
+      "title": "Office.com",
+      "url": "https://www.office.com/",
+      "image": "img/office.jpg",
+      "alt": "Office.com"
+    },
+    {
+      "title": "Login Barcode Creator",
+      "url": "lbc/index.html",
+      "image": "img/lbc.png",
+      "alt": "Login Barcode Creator"
+    },
+
+    {
+      "title": "iMEL Reports",
+      "url": "https://ssrs_prd.rootp.dbaas.sdi.pmi/prd/favorites/",
+      "image": "img/reports.png",
+      "alt": "iMEL Reports"
+    },
+    {
+      "title": "FG Process Order Execution",
+      "url": "https://ssrs_prd.rootp.dbaas.sdi.pmi/prd/report/preporo/pmrofrs/FGHS/FG%20Process%20Order%20Execution",
+      "image": "img/reports.png",
+      "alt": "FG Reports"
+    },
+    {
+      "title": "Status Productie Bay 3 (ONLINE)",
+      "url": "https://pmicloud.sharepoint.com/teams/PMRemployees-Operations-Romania/Shared%20Documents/Forms/AllItems.aspx?id=%2Fteams%2FPMRemployees%2DOperations%2DRomania%2FShared%20Documents%2FGeneral%2FStatus%20Productie%2FBay3&viewid=5d8c80c4%2D7f50%2D4a0c%2D9c8d%2D7e86523e5a91",
+      "image": "img/pm.jpg",
+      "alt": "Status Productie Bay 3"
+    },
+    {
+      "title": "DigiPerf",
+      "url": "https://app.pmidigiperf.com/",
+      "image": "img/digiperf.png",
+      "alt": "DigiPerf"
+    },
+    {
+      "title": "One PMI",
+      "url": "https://pmicloud.sharepoint.com/sites/RefRomania",
+      "image": "img/one.png",
+      "alt": "One PMI"
+    },
+    {
+      "title": "myPMI",
+      "url": "https://mypmi.my.site.com/s/",
+      "image": "img/mypmi.png",
+      "alt": "myPMI"
+    },
+    {
+      "title": "Charisma Online",
+      "url": "https://1978573.charismaonline.ro/CharismaOnline/",
+      "image": "img/charisma.jpg",
+      "alt": "Charisma Online"
+    },
+    {
+      "title": "Manuale Focke",
+      "url": "https://serviceportal.focke.com/",
+      "image": "img/focke.png",
+      "alt": "Manuale Focke"
+    }
+  ]
+}

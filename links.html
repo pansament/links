@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="" />
+  <title>Link-uri Utile</title>
+  <meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi" />
+  <link rel="Shortcut icon" href="img/ico.png" />
+
+  <!-- ========== Light/Dark Mode Styles (unchanged) ========== -->
+  <style>
+    /* Light Mode Button */
+    .light-mode-button {
+      background: 0;
+      border: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      width: 30px;
+      height: 16px;
+      position: fixed; /* fixed like in your original */
+      top: 15px;
+      right: 50%;
+      border: 1px solid rgba(255,255,255,0);
+      z-index: 1000;
+    }
+    .light-mode-button:focus { outline: none; } /* Accessibility note: consider adding a custom focus style */
+    .light-mode-button span:nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 16px;
+      background-color: #d6d7db;
+      border-radius: 9px;
+      box-shadow: inset 1px 1px 3px 0 rgb(0 0 0 / 40%);
+      transition: 1s;
+    }
+    .light-mode-button span:nth-child(2) {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 40%);
+      transition: 1s;
+    }
+
+    /* Light & Dark Mode Styles */
+    body {
+      background-color: #f6f6f6;
+      transition: background-color .3s, color .3s;
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: #141516;
+    }
+    body[light-mode=dark] {
+      background-color: #141516;
+      color: #ced4e2;
+    }
+    body[light-mode="dark"] .light-mode-button span:nth-child(1){
+      background-color: #ced4e2;
+      color: #141516;
+    }
+    body[light-mode=dark] .light-mode-button span:nth-child(2) {
+      left: 17px;
+      background-color: #141516;
+    }
+
+    /* ========== Address Book Grid Styles ========== */
+    .page-wrap {
+      width: 90%;
+      margin: 60px auto 100px; /* push content below the toggle & above weather */
+    }
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 1400px) { .links-grid { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 1100px) { .links-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 800px)  { .links-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .links-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .tile {
+      border: 3px solid currentColor;
+      padding: 16px;
+      text-align: center;
+      border-radius: 8px;
+      transition: transform .08s ease-in-out;
+    }
+    .tile:hover { transform: translateY(-2px); }
+    .tile a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+    .tile img {
+      width: 100px; height: 100px; object-fit: contain;
+      display: block; margin: 0 auto 8px;
+    }
+    .tile-title {
+      font-weight: 700;
+    }
+
+    /* Weather block alignment (bottom center) */
+    #Weather {
+      position: fixed;
+      bottom: 8px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none; /* let clicks pass unless on the widget */
+    }
+    #Weather .weatherwidget-io {
+      pointer-events: auto; /* allow interaction with the widget */
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== Initialize dark mode from localStorage (unchanged) ========== -->
+  <script>
+    (function () {
+      var app = document.getElementsByTagName("BODY")[0];
+      if (localStorage.lightMode == "dark") {
+        app.setAttribute("light-mode", "dark");
+      }
+    })();
+  </script>
+
+  <!-- ========== Toggle button (unchanged) ========== -->
+  <button class="light-mode-button" aria-label="Toggle Light Mode" onclick="toggle_light_mode()">
+    <span></span>
+    <span></span>
+  </button>
+  <script>
+    function toggle_light_mode() {
+      var app = document.getElementsByTagName("BODY")[0];
+      if (localStorage.lightMode == "dark") {
+        localStorage.lightMode = "light";
+        app.setAttribute("light-mode", "light");
+      } else {
+        localStorage.lightMode = "dark";
+        app.setAttribute("light-mode", "dark");
+      }
+    }
+    window.addEventListener("storage", function () {
+      var app = document.getElementsByTagName("BODY")[0];
+      if (localStorage.lightMode == "dark") {
+        app.setAttribute("light-mode", "dark");
+      } else {
+        app.setAttribute("light-mode", "light");
+      }
+    }, false);
+  </script>
+
+  <!-- ========== Address Book Container (new) ========== -->
+  <div class="page-wrap">
+    <div id="links-container" role="region" aria-label="Address book links"></div>
+  </div>
+
+  <!-- ========== Data-driven rendering (new) ========== -->
+  <script>
+    (async function renderAddressBook() {
+      const container = document.getElementById('links-container');
+
+      function sanitize(text) {
+        // Very minimal sanitization for text nodes
+        const div = document.createElement('div');
+        div.textContent = text || '';
+        return div.textContent;
+      }
+
+      function createTile(item) {
+        const div = document.createElement('div');
+        div.className = 'tile';
+
+        const title = sanitize(item.title || '');
+        const url = String(item.url || '#');
+        const image = String(item.image || '');
+        const alt = sanitize(item.alt || title);
+        const target = item.target === '_self' ? '_self' : '_blank';
+        const rel = target === '_blank' ? 'rel="noopener noreferrer"' : '';
+
+        div.innerHTML = `
+          <a href="${url}" target="${target}" ${rel} aria-label="${title}">
+            ${image ? `<img src="${image}" alt="${alt}" loading="lazy" />` : ''}
+            <div class="tile-title">${title}</div>
+          </a>
+        `;
+        return div;
+      }
+
+      try {
+        const res = await fetch('links.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+
+        const grid = document.createElement('div');
+        grid.className = 'links-grid';
+
+        items.forEach(item => grid.appendChild(createTile(item)));
+        container.replaceChildren(grid);
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = '<div style="color:crimson">Could not load <strong>links.json</strong>. Make sure the file is in the same folder and the page is opened via a web server (http://), not file://</div>';
+      }
+    })();
+  </script>
+
+  <!-- ========== Weather (unchanged) ========== -->
+  <div id="Weather">
+    <a class="weatherwidget-io"
+       href="https://forecast7.com/en/44d4326d10/bucharest/"
+       data-label_1="BUCHAREST"
+       data-font="Times New Roman"
+       data-icons="Climacons Animated"
+       data-theme="dark">BUCHAREST</a>
+  </div>
+  <script>
+    !function(d,s,id){
+      var js,fjs=d.getElementsByTagName(s)[0];
+      if(!d.getElementById(id)){
+        js=d.createElement(s);
+        js.id=id;
+        js.src='https://weatherwidget.io/js/widget.min.js';
+        fjs.parentNode.insertBefore(js,fjs);
+      }
+    }(document,'script','weatherwidget-io-js');
+  </script>
+  
+
+<div style="width:90%; margin: 0 auto 12px; display:flex; gap:8px; align-items:center;">
+  <button id="edit-server-btn" style="padding:6px 10px;">Edit links (shared)</button>
+  <span id="save-status" role="status" aria-live="polite"></span>
+</div>
+
+<div id="server-editor" style="display:none; width:90%; margin:0 auto;">
+  <textarea id="server-json-editor" style="width:100%; height:280px; font-family:ui-monospace,Consolas,monospace;"></textarea>
+  <div style="margin-top:8px; display:flex; gap:8px;">
+    <button id="save-server-btn" style="padding:6px 12px;">Save to server</button>
+    <button id="cancel-server-btn" style="padding:6px 12px;">Cancel</button>
+  </div>
+</div>
+
+<script>
+  const API_BASE = '/api';
+
+  document.getElementById('edit-server-btn').addEventListener('click', async () => {
+    const panel = document.getElementById('server-editor');
+    const ta = document.getElementById('server-json-editor');
+    const status = document.getElementById('save-status');
+    try {
+      status.textContent = 'Loading...';
+      const res = await fetch(`${API_BASE}/links`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      ta.value = JSON.stringify(await res.json(), null, 2);
+      panel.style.display = 'block';
+      status.textContent = '';
+    } catch (e) {
+      status.textContent = 'Failed to load: ' + e.message;
+    }
+  });
+
+  document.getElementById('save-server-btn').addEventListener('click', async () => {
+    const ta = document.getElementById('server-json-editor');
+    const status = document.getElementById('save-status');
+    try {
+      const payload = JSON.parse(ta.value); // validate JSON
+      const res = await fetch(`${API_BASE}/links`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      status.textContent = 'Saved.';
+      // Optional: re-render grid
+      setTimeout(() => location.reload(), 300);
+    } catch (e) {
+      status.textContent = 'Save failed: ' + e.message;
+    }
+  });
+
+  document.getElementById('cancel-server-btn').addEventListener('click', () => {
+    document.getElementById('server-editor').style.display = 'none';
+  });
+</script>  
+  
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!-- Everything is invisible  -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<title>Link-uri Utile</title>
+<meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi"><link rel="Shortcut icon" href="img/ico.png">
+
+<p style=" position: absolute; top: 0; left: 0; width: 100%; text-align: center;">
+    <style>
+		/* Light Mode Button
+		--------------------------- */ 
+
+		.light-mode-button {
+			background:0;
+		    border: 0;
+		    box-sizing: border-box;
+		    cursor: pointer;
+		    width: 30px;
+		    height: 16px;
+		    position: relative;
+		    border: 1px solid rgba(255,255,255,0);
+
+		    /* Fixed position for this demo */
+		    position: fixed;
+		    top:15px;
+		    right:50%;
+		}
+
+		.light-mode-button:focus {
+			outline:none; /* Not ideal for accessibility */
+		}
+
+		.light-mode-button span:nth-child(1) {
+			position: absolute;
+			top:0;
+		    left:0;
+		    width: 30px;
+		    height:16px;
+		    background-color: #d6d7db;
+		    border-radius: 9px;
+		    box-shadow: inset 1px 1px 3px 0 rgb(0 0 0 / 40%);
+		    transition: 1s;
+		}
+
+		.light-mode-button span:nth-child(2) {
+			position: absolute;
+			top:3px;
+		    left:3px;
+		    width: 10px;
+		    height: 10px;
+		    background-color: #fff;
+		    border-radius: 50%;
+		    box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 40%);
+		    transition: 1s;
+		}
+
+
+		/* Light & Dark Mode Styles
+		--------------------------- */ 
+
+		body {
+			background-color: #f6f6f6;
+            transition: background-color .3s;
+        }
+
+		body[light-mode=dark] {
+            background-color: #141516;
+            color: #ced4e2;
+        }
+
+        body[light-mode="dark"] .light-mode-button span:nth-child(1){
+            background-color: #ced4e2;
+            color: #141516;
+        }
+
+        body[light-mode=dark] .light-mode-button span:nth-child(2) {
+		    left: 17px;
+		    background-color: #141516;
+		}
+
+    </style>
+  </head>
+
+
+  <body>
+    <script>
+        var app = document.getElementsByTagName("BODY")[0];
+        if (localStorage.lightMode == "dark") {
+            app.setAttribute("light-mode", "dark");
+        }
+    </script>
+
+
+	<button 
+		class="light-mode-button" aria-label="Toggle Light Mode" onclick="toggle_light_mode()">
+    	<span></span>
+    	<span></span>
+    </button> 
+
+
+    <script>
+		
+        function toggle_light_mode() {
+            var app = document.getElementsByTagName("BODY")[0];
+            if (localStorage.lightMode == "dark") {
+                localStorage.lightMode = "light";
+                app.setAttribute("light-mode", "light");
+            } else {
+                localStorage.lightMode = "dark";
+                app.setAttribute("light-mode", "dark");
+            }       
+        }
+
+		window.addEventListener("storage", function () {
+			if (localStorage.lightMode == "dark") {
+				app.setAttribute("light-mode", "dark");
+			} else {
+				app.setAttribute("light-mode", "light");
+			}
+		}, false);
+		
+    </script>
+	</p>
+  </body>
+</html>
+
+<p>
+<br>
+</p>
+
+
+
+<table style="width: 50%;margin-left:auto;margin-right:auto;" border="3" cellpadding="20">
+<tbody>
+
+<tr>
+
+<td>
+<a href="http://imelweb-ro-prd.pmiapps.biz/apriso/apriso/" target="_blank" rel="noopener noreferrer">
+<img src="img/imel.jpg" alt="description" width="100" height="100" /></img></a>
+<a href="http://pmroimelwebprd.sdi.pmi/apriso/apriso/" target="_blank" rel="noopener noreferrer"><center><strong>iMEL
+</strong>
+</a>
+</td>
+
+<td>
+<a href="http://ots.app.pmi/db.aspx?table=SPA_Line_Overview&eoa=x#RO70" target="_blank" rel="noopener noreferrer">
+<img src="img/spa.jpg" alt="description" width="100" height="100" />
+<center><strong>Secondary Performance Analysis (SPA) RO70
+</strong>
+</a>
+</td>
+
+<td>
+<a href="http://ots.app.pmi/db.aspx?table=SPA_Segment_Overview&act=query&db_Line=RO10-RS-P1-L309" target="_blank" rel="noopener noreferrer">
+<img src="img/spa.jpg" alt="description" width="100" height="100" />
+<center><strong>Secondary Performance Analysis (SPA) Bay 3 - Voyager 09
+</strong>
+</a>
+</td>
+
+<td>
+<a href="http://ots.app.pmi/db.aspx?table=SPA_Segment_Overview&act=query&db_Line=RO10-RS-P1-L310" target="_blank" rel="noopener noreferrer">
+<img src="img/spa.jpg" alt="description" width="100" height="100" />
+<center><strong>Secondary Performance Analysis (SPA) Bay 3 - Voyager 10
+</strong>
+</a>
+</td>
+
+<td>
+<a href="http://ots.app.pmi/db.aspx?table=SPA_Segment_Overview&act=query&db_Line=RO10-RS-P1-L311" target="_blank" rel="noopener noreferrer">
+<img src="img/spa.jpg" alt="description" width="100" height="100" />
+<center><strong>Secondary Performance Analysis (SPA) Bay 3 - Voyager 11
+</strong>
+</a>
+</td>
+
+<td>
+<a href="http://ots.app.pmi/db.aspx?table=SPA_Segment_Overview&act=query&db_Line=RO10-RS-P1-L312" target="_blank" rel="noopener noreferrer">
+<img src="img/spa.jpg" alt="description" width="100" height="100" />
+<center><strong>Secondary Performance Analysis (SPA) Bay 3 - Voyager 12
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://pmicloud.sharepoint.com/teams/DHLogVoyager-Bay3-PMR/Lists/DH%20Log/" target="_blank" rel="noopener noreferrer">
+<img src="img/dh.jpg" alt="description" width="100" height="100" />
+<center><strong>DH Loogbook Voyager
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://pmi.inextor.biz/" target="_blank" rel="noopener noreferrer">
+<img src="img/inextor.jpg" alt="description" width="100" height="100" />
+<center><strong>Inextor Vault
+</strong>
+</a>
+</td>
+
+
+</tr>
+
+<tr>
+
+<td>
+<a href="https://awacs-portal2.icloud-prd.eu-west-1.aws.pmicloud.biz/portal/?a=speed-management" target="_blank" rel="noopener noreferrer">
+<img src="img/awacs.png" alt="description" width="100" height="100" />
+<center><strong>Speed Management AWACS
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3226ffsfl/smc-line-overview-lu09?orgId=3&refresh=5s" target="_blank" rel="noopener noreferrer">
+<img src="img/grafana_icon.png" alt="description" width="100" height="100" />
+<center><strong>Grafana LU 29
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3235fftfl/smc-line-overview-lu10?orgId=3&refresh=5s" target="_blank" rel="noopener noreferrer">
+<img src="img/grafana_icon.png" alt="description" width="100" height="100" />
+<center><strong>Grafana LU 30
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://pmi.saviyntcloud.com/ECM/workflowmanagement/requesthome?menu=1" target="_blank" rel="noopener noreferrer">
+<img src="img/siga.png" alt="description" width="100" height="100" />
+<center><strong>SIGA - Access Request System 
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://imdl-pmicloud.msappproxy.net/#/" target="_blank" rel="noopener noreferrer">
+<img src="img/imdllat.png" alt="description" width="100" height="100" />
+<center><strong>IMDL	
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://outlook.office.com/" target="_blank" rel="noopener noreferrer">
+<img src="img/mail.png" alt="description" width="100" height="100" />
+<center><strong>Outlook
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://www.office.com/" target="_blank" rel="noopener noreferrer">
+<img src="img/office.jpg" alt="description" width="100" height="100" />
+<center><strong>Office.com
+</strong>
+</a>
+</td>
+
+<td>
+<a href="lbc/index.html" rel="noopener noreferrer">
+<img src="img/lbc.png" alt="description" width="100" height="100" />
+<center><strong>Login Barcode Creator
+</strong>
+</a>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<a href="http://imelrpt-ro-prd.pmiapps.biz/Reports_PRD" target="_blank" rel="noopener noreferrer">
+<img src="img/reports.png" alt="description" width="100" height="100" />
+<center><strong>iMEL Reports
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://ssrs_prd.dbaas.sdi.pmi/prd/report/PREPORO/FactoryReportingSystem/FGHS/FG%20Process%20Order%20Execution" target="_blank" rel="noopener noreferrer">
+<img src="img/reports.png" alt="description" width="100" height="100" />
+<center><strong>FG Process Order Execution
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://pmicloud.sharepoint.com/teams/PMRemployees-Operations-Romania/Shared%20Documents/Forms/AllItems.aspx?id=%2Fteams%2FPMRemployees%2DOperations%2DRomania%2FShared%20Documents%2FGeneral%2FStatus%20Productie%2FBay3&viewid=5d8c80c4%2D7f50%2D4a0c%2D9c8d%2D7e86523e5a91" target="_blank" rel="noopener noreferrer">
+<img src="img/pm.jpg" alt="description" width="100" height="100" />
+<center><strong>Status Productie Bay 3 (ONLINE)
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://app.pmidigiperf.com/" target="_blank" rel="noopener noreferrer">
+<img src="img/digiperf.png" alt="description" width="100" height="100" />
+<center><strong> 
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://pmicloud.sharepoint.com/sites/RefRomania" target="_blank" rel="noopener noreferrer">
+<img src="img/one.png" alt="description" width="100" height="100" />
+<center><strong> 	
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://mypmi.my.site.com/s/" target="_blank" rel="noopener noreferrer">
+<img src="img/mypmi.png" alt="description" width="100" height="100" />
+<center><strong> 	
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://1978573.charismaonline.ro/CharismaOnline/" target="_blank" rel="noopener noreferrer">
+<img src="img/charisma.jpg" alt="description" width="100" height="100" />
+<center><strong> Charisma Online	
+</strong>
+</a>
+</td>
+
+<td>
+<a href="https://serviceportal.focke.com/" target="_blank" rel="noopener noreferrer">
+<img src="img/focke.png" alt="description" width="100" height="100" />
+<center><strong>Manuale Focke
+</strong>
+</a>
+</td>
+
+</tr>
+</tbody>
+</table>
+
+
+
+<div id="Weather">
+<p style=" position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;">
+<a class="weatherwidget-io" href="https://forecast7.com/en/44d4326d10/bucharest/" data-label_1="BUCHAREST" data-font="Times New Roman" data-icons="Climacons Animated" data-theme="dark" >BUCHAREST</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+</div>
+</p>	
+

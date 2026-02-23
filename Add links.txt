@@ -1,0 +1,101 @@
+Adding new links is **very simple now** — you only edit **`links.json`**, nothing in the HTML.
+
+Here’s the clear step‑by‑step guide:
+
+***
+
+# ✅ **How to Add a New Link to the Grid**
+
+1.  Open **`links.json`**.
+2.  Find the `"items": [ ... ]` list.
+3.  Add a new entry **anywhere inside the array**, following this template:
+
+```json
+{
+  "title": "My New Tool",
+  "url": "https://example.com/",
+  "image": "img/myicon.png",
+  "alt": "My New Tool icon"
+}
+```
+
+4.  Save the file.
+5.  Refresh `links.html` in your browser.
+
+**The grid updates automatically.**
+
+***
+
+# 📝 Example — Adding a New Link
+
+Let’s say you want to add “Shift Schedule Portal”.
+
+Add this object inside the `"items"` array (don’t forget commas between objects):
+
+```json
+{
+  "title": "Shift Schedule Portal",
+  "url": "https://schedule.company.com",
+  "image": "img/schedule.png",
+  "alt": "Shift Schedule"
+}
+```
+
+You can add it at the end or between any existing items — order doesn’t matter.
+
+***
+
+# 📌 Important Notes
+
+### 1️⃣ No need to touch HTML
+
+`links.html` dynamically loads **all** objects from `links.json`.  
+Each new link automatically becomes a new tile.
+
+### 2️⃣ Images
+
+Make sure the `image` path exists, e.g.:
+
+    img/myicon.png
+
+Add your icon to the `img` folder.
+
+### 3️⃣ Optional fields
+
+You can add `target: "_self"` if you want a link to open in the same tab:
+
+```json
+{
+  "title": "Internal Tool",
+  "url": "http://intranet/tool",
+  "image": "img/tool.png",
+  "alt": "Internal Tool",
+  "target": "_self"
+}
+```
+
+### 4️⃣ JSON formatting rules
+
+*   Every entry except the **last** one must end with a comma `,`
+*   Strings use **double quotes**
+*   The file must remain valid JSON
+
+If you ever break the format, the page will show:
+
+> “Could not load links.json”
+
+But I can help fix it.
+
+***
+
+# 🎉 Done
+
+Now your Address Book is **easy to maintain**, **clean**, and **future‑proof**.  
+If you want, I can also:
+
+✔ group links by category  
+✔ sort them alphabetically  
+✔ add a search bar  
+✔ generate a JSON editor UI
+
+Just tell me!
