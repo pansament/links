@@ -145,6 +145,13 @@
       "url": "https://serviceportal.focke.com/",
       "image": "img/focke.png",
       "alt": "Manuale Focke"
+    },
+    {
+      "title": "SPA Bay 3",
+      "url": "file:///C:/Users/ibucur/OneDrive%20-%20Philip%20Morris%20International/Desktop/Spa%20Bay%203%20v1.2.html",
+      "image": "img/spa.png",
+      "alt": "SPA Bay 3"
     }
   ]
+
 }
