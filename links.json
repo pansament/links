@@ -7,6 +7,12 @@
       "alt": "iMEL"
     },
     {
+      "title": "Plan Productie",
+      "url": "https://app.powerbi.com/groups/dbd2dcaf-beaf-4185-89b7-e0d5527a988b/rdlreports/ffbe38ee-ee58-47ee-9d5c-d62cff19210e?ctid=8b86a65e-3c3a-4406-8ac3-19a6b5cc52bc&rp:LU=LU%2009&rp:LU=LU%2010&rp:LU=LU%2011&rp:LU=LU%2012",
+      "image": "img/powerbi.ico",
+      "alt": "Plan Productie Bay 3"
+    },
+    {
       "title": "SPA RO70",
       "url": "https://ots.spappa.aws.private-pmideep.biz/db.aspx?table=SPA_Line_Overview&eoa=x#RO70",
       "image": "img/spa.jpg",
@@ -149,6 +155,7 @@
   ]
 
 }
+
 
 
 
