@@ -62,16 +62,28 @@
       "alt": "AWACS"
     },
     {
-      "title": "Grafana LU 29",
+      "title": "Grafana LU 09",
       "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3226ffsfl/smc-line-overview-lu09?orgId=3&refresh=5s",
       "image": "img/grafana_icon.png",
-      "alt": "Grafana LU 29"
+      "alt": "Grafana LU 09"
     },
     {
-      "title": "Grafana LU 30",
+      "title": "Grafana LU 10",
       "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3235fftfl/smc-line-overview-lu10?orgId=3&refresh=5s",
       "image": "img/grafana_icon.png",
-      "alt": "Grafana LU 30"
+      "alt": "Grafana LU 10"
+    },
+    {
+      "title": "Grafana LU 11",
+      "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3235fftfl/smc-line-overview-lu11?orgId=3&refresh=5s",
+      "image": "img/grafana_icon.png",
+      "alt": "Grafana LU 11"
+    },
+    {
+      "title": "Grafana LU 12",
+      "url": "https://grafana-piiot-ro-oto.apps.otp.caas.sdi.pmi/d/HEJa3235fftfl/smc-line-overview-lu12?orgId=3&refresh=5s",
+      "image": "img/grafana_icon.png",
+      "alt": "Grafana LU 12"
     },
     {
       "title": "SIGA – Access Request",
@@ -155,6 +167,7 @@
   ]
 
 }
+
 
 
 
