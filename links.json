@@ -163,10 +163,17 @@
       "url": "https://serviceportal.focke.com/",
       "image": "img/focke.png",
       "alt": "Manuale Focke"
+    },
+    {
+      "title": "Rejectii Cantar",
+      "url": "http://10.139.213.179:10001/tt2.aspx",
+      "image": "img/pmro.png",
+      "alt": "Rejectii Cantar"
     }
   ]
 
 }
+
 
 
 
